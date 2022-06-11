@@ -1,3 +1,4 @@
+import re
 from time import time
 import pyttsx3
 import os
@@ -29,3 +30,38 @@ def greats():
         speak("good night darling")
 
     speak("My name is baby, How i can help you my lord")
+
+
+def takeinput():
+    r = sr.Recognizer()
+
+    with sr.Microphone() as audio:
+        print("I am listening sir....")
+        speak("i am listening")
+
+        r.pause_threshold = 1
+
+        vakya = r.listen(audio)
+        mytext = r.recognize_google(vakya, language="en-in")
+        mytext = mytext.lower()
+
+    try:
+        print("searching...")
+        print("you said: {mytext}\n")
+
+    except Exception as e:
+        print(e)
+        print("can you say again my loard..")
+        speak("can you say again my loard")
+
+        return "None"
+    return mytext
+
+
+if __name__ == "__main__":
+    def clear():
+        return os.system("cls")
+
+    clear()
+    great()
+    takeinput()
